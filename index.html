@@ -6,7 +6,39 @@
 </head>
 <body>
   <script>
-    
+    function computerPlay(){
+        let play = ["rock", "paper", "scissors"];
+        return play[Math.floor(Math.random() * 3)];
+    }
+    function playRound(playerSelection, computerSelection){
+        playerSelection = playerSelection.toLowerCase(); //clean up input
+        
+        let win = "You win, " +playerSelection+ " beats " +computerSelection;
+        let lose = "You lose, " +computerrSelection+ " beats " +playerSelection;
+        let draw = "It's a draw, " +playerSelection+ " equals " +computerSelection;
+
+        if(playerSelection == "rock" && computerSelection == "paper"){
+            return lose;
+        } else if (playerSelection == "rock" && computerSelection == "scissors") {
+            return win;
+        } else if (playerSelection == "paper" && computerSelection == "rock") {
+            return win;
+        } else if (playerSelection == "paper" && computerSelection == "scissors") {
+            return lose;
+        } else if (playerSelection == "scissors" && computerSelection == "rock") {
+            return lose;
+        } else if (playerSelection == "scissors" && computerSelection == "paper") { 
+            return win;
+        } else if (playerSelection == "rock" && computerSelection == "rock") {
+            return draw;
+        } else if (playerSelection == "paper" && computerSelection == "paper") {
+            return draw;
+        } else if (playerSelection == "scissors" && computerSelection == "scissors") {
+            return draw;
+        } else {
+            return "Invalid input";
+        }
+    }
   </script>
 </body>
 </html>
