@@ -9,7 +9,7 @@
           border-style: solid;
           text-align: center;
           font-size: 40px;
-          padding: 100px;
+          padding: 90px;
           margin-bottom: 10px;
       }
 
@@ -27,7 +27,7 @@
 <body>
     <div id="display">
         <span>
-            Welcome to the rock, paper, scissors game
+            Welcome to the rock, paper, and scissors game
             Please select a hand
         </span>
     </div>
@@ -72,6 +72,10 @@
         }
     }
 
+    function handSelection(button){
+        console.log(button.textContent);
+    }
+
     function game(){
         let round = 1;
         let yourScore = 0;
@@ -103,7 +107,8 @@
     }
 
     //game();
-
+    let buttons = document.querySelectorAll("button");
+    buttons.forEach((button) => button.addEventListener('click', () => {handSelection(button)}));
   </script>
 </body>
 </html>
