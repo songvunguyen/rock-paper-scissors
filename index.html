@@ -27,16 +27,30 @@
 <body>
     <div id="display">
         <span>
-            Welcome to the rock, paper, and scissors game
-            Please select a hand
+            Welcome to the rock, paper, and scissors game.
+            Please select a hand or end to end game
         </span>
     </div>
     <div id="butt">
         <button type="button">Rock</button>
         <button type="button">Paper</button>
         <button type="button">Scissors</button>
+        <button type="button">End</button>
     </div>
   <script>
+
+    //initialize global variables
+    let yourScore = 0;
+    let computerScore = 0;
+    //set up event listener on all the button
+    let buttons = document.querySelectorAll("button");
+            buttons.forEach((button) => {
+                button.addEventListener('click', () => {
+                    handSelection(button);
+                });
+            });
+    let span = document.querySelector("span");
+    
     function computerPlay(){
         let play = ["rock", "paper", "scissors"];
         return play[Math.floor(Math.random() * 3)];
@@ -73,19 +87,12 @@
     }
 
     function handSelection(button){
-        console.log(button.textContent);
-    }
-
-    function game(){
-        let round = 1;
-        let yourScore = 0;
-        let computerScore = 0;
-
-        while (round <= 5){
-            let playerSelection = prompt("Round " +round+ ". Enter your hand: ");
+        if(button.textContent === "End"){
+            endGame();
+        }else{
+            let playerSelection = button.textContent;
             let computerSelection = computerPlay();
-            console.log(playRound(playerSelection, computerSelection));
-
+            span.textContent = playRound(playerSelection, computerSelection);
             if(playRound(playerSelection, computerSelection).includes("win")){
                 yourScore++;
             }else if (playRound(playerSelection, computerSelection).includes("lose")){
@@ -96,19 +103,19 @@
             
             round++;
         }
+    }
 
+    function endGame(){
         if (yourScore > computerScore){
-            console.log("You win by " +yourScore+ "-" +computerScore);
+            span.textContent = "You win by " +yourScore+ "-" +computerScore;
         }else if (computerScore > yourScore){
-            console.log("You lose by " +yourScore+ "-" +computerScore);
+            span.textContent = "You lose by " +yourScore+ "-" +computerScore;
         }else{
-            console.log("It's a draw by " +yourScore+ "-" +computerScore);
+            span.textContent = "It's a draw by " +yourScore+ "-" +computerScore;
         }
     }
 
-    //game();
-    let buttons = document.querySelectorAll("button");
-    buttons.forEach((button) => button.addEventListener('click', () => {handSelection(button)}));
+    
   </script>
 </body>
 </html>
